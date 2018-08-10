@@ -2,11 +2,26 @@
 
 
 [[projects]]
+  branch = "master"
+  name = "github.com/adtac/go-akismet"
+  packages = ["akismet"]
+  revision = "f332a49c03313e67c622679086931d57e04683b5"
+
+[[projects]]
   name = "github.com/joho/godotenv"
   packages = ["."]
   revision = "a79fa1e548e2c689c241d10173efd51e5d689d5b"
   source = "https://github.com/joho/godotenv.git"
   version = "v1.2.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/lib/pq"
+  packages = [
+    ".",
+    "oid"
+  ]
+  revision = "90697d60dd844d5ef6ff15135d0203f65d2f53b8"
 
 [[projects]]
   name = "github.com/mattn/go-sqlite3"
@@ -16,6 +31,12 @@
   version = "v1.3.0"
 
 [[projects]]
+  name = "github.com/microcosm-cc/bluemonday"
+  packages = ["."]
+  revision = "dafebb5b6ff2861a0d69af64991e10866c19be85"
+  version = "v1.0.0"
+
+[[projects]]
   name = "github.com/op/go-logging"
   packages = ["."]
   revision = "b2cb9fa56473e98db8caba80237377e83fe44db5"
@@ -23,14 +44,25 @@
   version = "v1"
 
 [[projects]]
+  name = "github.com/russross/blackfriday"
+  packages = ["."]
+  revision = "55d61fa8aa702f59229e6cff85793c22e580eaf5"
+  source = "https://github.com/russross/blackfriday.git"
+  version = "v1.5.1"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["context"]
+  packages = [
+    "context",
+    "html",
+    "html/atom"
+  ]
   revision = "a337091b0525af65de94df2eb7e98bd9962dcbe2"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b4a54d0c8c7c97173ec020036a1ba7bc2843dcb560a509b77ba7ed7eb02d793c"
+  inputs-digest = "1d9bf8962f4d7aa74f4ebc638ac1817a5aa78c32586fabfd78baafc3f32d08bb"
   solver-name = "gps-cdcl"
   solver-version = 1

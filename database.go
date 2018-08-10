@@ -22,37 +22,18 @@ var db Database
 // semicolon. To summarize, the canonical form of this strings is:
 //
 //     connectionStr := "database:key1=value1;key2=value2;key3=value3"
-func parseConnectionStr(connectionStr string) (string, map[string]string, error) {
+func parseConnectionStr(connectionStr string) (string, error) {
 	dbPos := strings.Index(connectionStr, ":")
 	if dbPos == -1 {
-		return "", nil, errorList["err.db.conf.separator.missing"]
+		return "", errorList["err.db.conf.separator.missing"]
 	}
 	dbName := strings.TrimSpace(connectionStr[:dbPos])
 
-	params := make(map[string]string)
-
-	for _, param := range strings.Split(connectionStr[dbPos+1:], ";") {
-		equalPos := strings.Index(param, "=")
-		if equalPos != -1 {
-			key := strings.TrimSpace(param[:equalPos])
-			if len(key) == 0 {
-				return "", nil, errorList["err.db.conf.key.missing"]
-			}
-
-			value := strings.TrimSpace(param[equalPos+1:])
-			if len(value) == 0 {
-				return "", nil, errorList["err.db.conf.value.missing"]
-			}
-
-			params[key] = value
-		}
-	}
-
-	return dbName, params, nil
+	return dbName, nil
 }
 
 func LoadDatabase(connectionStr string) error {
-	dbName, params, err := parseConnectionStr(connectionStr)
+	dbName, err := parseConnectionStr(connectionStr)
 	if err != nil {
 		return err
 	}
@@ -60,8 +41,10 @@ func LoadDatabase(connectionStr string) error {
 	db = nil
 	err = errorList["err.db.unimplemented"]
 	switch dbName {
-	case "sqlite":
-		db, err = sqliteInit(params)
+	case "sqlite3":
+		db, err = sqliteInit(connectionStr)
+	case "postgres":
+		db, err = postgresInit(connectionStr)
 	}
 
 	return err

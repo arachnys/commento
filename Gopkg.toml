@@ -12,3 +12,8 @@
   name = "github.com/op/go-logging"
   source = "https://github.com/op/go-logging.git"
   version = "~v1"
+
+[[constraint]]
+  name = "github.com/russross/blackfriday"
+  source = "https://github.com/russross/blackfriday.git"
+  version = "~v1.5.1"
