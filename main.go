@@ -22,7 +22,7 @@ func main() {
 
 	initRenderer()
 
-	connectionStr := "sqlite:file=" + os.Getenv("COMMENTO_DATABASE_FILE")
+	connectionStr := os.Getenv("COMMENTO_DATABASE_URL")
 
 	err = LoadDatabase(connectionStr)
 	if err != nil {

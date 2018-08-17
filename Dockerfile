@@ -1,5 +1,5 @@
 # Build backend
-FROM golang:1.8.1 as backend-build
+FROM golang:1.10.3 as backend-build
 
 COPY . /go/src/commento
 WORKDIR /go/src/commento
@@ -29,7 +29,7 @@ COPY --from=backend-build /go/src/commento/commento /commento/
 COPY --from=frontend-build /commento/assets/ /commento/assets/
 
 RUN mkdir /commento-data/
-ENV COMMENTO_DATABASE_FILE /commento-data/commento.sqlite3
+ENV COMMENTO_DATABASE_URL sqlite3:file=/commento-data/commento.sqlite3
 
 WORKDIR /commento
 ENTRYPOINT /commento/commento

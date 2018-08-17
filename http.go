@@ -110,6 +110,7 @@ func CreateCommentHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		result.Status = http.StatusInternalServerError
 		result.Message = errorList["err.internal"].Error()
+		fmt.Println("Error:", err)
 		result.render(w)
 		return
 	}
@@ -148,11 +149,12 @@ func GetCommentsHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		result.Status = http.StatusInternalServerError
 		result.Message = errorList["err.internal"].Error()
+		fmt.Println("Error:", err)
 		result.render(w)
 		return
 	}
 
-	for i, _ := range comments {
+	for i := range comments {
 		comments[i].Html = sanitisedHTML(comments[i].Comment)
 	}
 
